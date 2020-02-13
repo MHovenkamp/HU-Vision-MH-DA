@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\source",
+    "\\source\\ExternalDLL\\ExternalDLL",
+    "\\source\\FaceRecognitionGUI",
+    "\\source\\FaceRecognitionGUI\\.vs",
+    "\\source\\FaceRecognitionGUI\\.vs\\FaceRecognitionGUI2015",
+    "\\source\\FaceRecognitionGUI\\.vs\\FaceRecognitionGUI2015\\v15",
+    "\\source\\FaceRecognitionGUI\\.vs\\FaceRecognitionGUI2015\\v15\\Server",
+    "\\source\\FaceRecognitionGUI\\.vs\\FaceRecognitionGUI2015\\v15\\Server\\sqlite3",
+    "\\testsets\\Set A",
+    "\\testsets\\Set A\\TestSet Images"
+  ],
+  "SelectedNode": "\\.bettercodehub.yml",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-DLLExecution",
+      "appliesTo": "source/ExternalDLL/ExternalDLL/DLLExecution.cpp",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-ExternalDLL",
+      "appliesTo": "source/ExternalDLL/ExternalDLL.sln",
+      "type": "launch"
+    }
+  ]
+}

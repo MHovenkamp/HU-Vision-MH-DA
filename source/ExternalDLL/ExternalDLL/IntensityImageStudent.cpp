@@ -11,6 +11,16 @@ IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other)
 	pixelStorage = other.getPixelStorage();
 }
 
+IntensityImageStudent::IntensityImageStudent(const RGBImageStudent &other) : IntensityImage(other.getWidth(), other.getHeight()) {
+	pixelStorage.reserve(getWidth() * getHeight());
+	auto rgbPixels = other.getPixelStorage();
+	for (size_t i = 0; i < pixelStorage.size(); i++){
+		auto tmp = rgbPixels[i];
+		pixelStorage[i] = (tmp.r + tmp.g + tmp.b)/3; //Averaging
+		//pixelStorage[i] = (tmp.r * 0.2126 + tmp.g * 0.7152 + tmp.b * 0.0722); //Luma
+	}
+}
+
 IntensityImageStudent::IntensityImageStudent(const int width, const int height) : IntensityImage(width, height) {
 	pixelStorage.reserve(getWidth() * getHeight());
 }

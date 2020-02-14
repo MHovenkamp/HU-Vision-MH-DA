@@ -6,6 +6,7 @@
 
 #pragma once
 #include "IntensityImage.h"
+#include<vector>
 class IntensityImageStudent : public IntensityImage {
 public:
 	IntensityImageStudent();

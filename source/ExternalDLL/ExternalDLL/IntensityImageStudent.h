@@ -9,13 +9,11 @@
 #include "RGBImageStudent.h"
 #include<vector>
 class IntensityImageStudent : public IntensityImage {
-private:
-	std::vector<Intensity> pixelStorage;
 public:
+	std::vector<Intensity> pixelStorage;
 	IntensityImageStudent();
 	IntensityImageStudent(const IntensityImageStudent &other);
 	IntensityImageStudent(const int width, const int height);
-	IntensityImageStudent(const RGBImageStudent &other);
 	~IntensityImageStudent();
 
 	void set(const int width, const int height);
@@ -26,6 +24,4 @@ public:
 
 	Intensity getPixel(int x, int y) const;
 	Intensity getPixel(int i) const;
-
-	std::vector<Intensity> getPixelStorage() const;
 };

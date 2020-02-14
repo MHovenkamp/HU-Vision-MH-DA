@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\source",
-    "\\source\\ExternalDLL",
     "\\source\\ExternalDLL\\ExternalDLL",
     "\\source\\FaceRecognitionGUI"
   ],
-  "SelectedNode": "\\source\\ExternalDLL\\ExternalDLL\\IntensityImageStudent.cpp",
+  "SelectedNode": "\\source",
   "PreviewInSolutionExplorer": false
 }

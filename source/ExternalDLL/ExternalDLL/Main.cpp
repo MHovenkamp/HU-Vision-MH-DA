@@ -14,12 +14,11 @@ void drawFeatureDebugImage(IntensityImage &image, FeatureMap &features);
 bool executeSteps(DLLExecution * executor);
 
 int main(int argc, char * argv[]) {
+	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
-	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	//ImageFactory::setImplementation(ImageFactory::STUDENT);
 
-
-	ImageIO::debugFolder = "D:\\Users\\Rolf\\Downloads\\FaceMinMin";
+	ImageIO::debugFolder = "C:\\Users\\mhove\\Downloads\\FaceMinMin";
 	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
 
 
@@ -31,9 +30,14 @@ int main(int argc, char * argv[]) {
 		system("pause");
 		return 0;
 	}
-
+	//for (size_t i = 0; i < (input->getHeight() * input->getWidth()); i++)
+	//{
+	//	std::cout << "rgb " << int(input->getPixel(i).r) << "," << int(input->getPixel(i).b) << "," << int(input->getPixel(i).g) << "\n";
+	//}
 
 	ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName("debug.png"));
+
+	
 
 	DLLExecution * executor = new DLLExecution(input);
 
@@ -63,11 +67,13 @@ int main(int argc, char * argv[]) {
 bool executeSteps(DLLExecution * executor) {
 
 	//Execute the four Pre-processing steps
-	if (!executor->executePreProcessingStep1(false)) {
+	if (!executor->executePreProcessingStep1(true)) {
 		std::cout << "Pre-processing step 1 failed!" << std::endl;
 		return false;
 	}
 
+
+	std::cout << "YOUR MY DAD BOOGIEWOOGIE \n";
 	if (!executor->executePreProcessingStep2(false)) {
 		std::cout << "Pre-processing step 2 failed!" << std::endl;
 		return false;

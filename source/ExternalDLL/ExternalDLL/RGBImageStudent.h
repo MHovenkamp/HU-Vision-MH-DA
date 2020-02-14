@@ -8,9 +8,8 @@
 #include "RGBImage.h"
 #include <vector>
 class RGBImageStudent : public RGBImage {
-private:
-	std::vector<RGB> pixelStorage;
 public:
+	std::vector<RGB> pixelStorage;
 
 	RGBImageStudent();
 	RGBImageStudent(const RGBImageStudent &other);
@@ -25,6 +24,4 @@ public:
 
 	RGB getPixel(int x, int y) const;
 	RGB getPixel(int i) const;
-
-	std::vector<RGB> getPixelStorage() const;
 };

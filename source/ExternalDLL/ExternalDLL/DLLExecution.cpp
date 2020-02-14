@@ -384,6 +384,7 @@ bool DLLExecution::executePreProcessingStep2(bool student) {
 		return false;
 	}
 	if (student) {
+		std::cout << "YOUR MY MOM BOOGIEWOOGIE \n";
 		resultPreProcessingStep2 = studentPreProcessing.stepScaleImage(*resultPreProcessingStep1);
 	} else {
 		resultPreProcessingStep2 = defaultPreProcessing.stepScaleImage(*resultPreProcessingStep1);

@@ -24,7 +24,7 @@ void RGBImageStudent::set(const int width, const int height) {
 }
 
 void RGBImageStudent::set(const RGBImageStudent &other) {
-	IntensityImage::set(other.getWidth(), other.getHeight());
+	RGBImage::set(other.getWidth(), other.getHeight());
 	pixelStorage = other.getPixelStorage();
 }
 

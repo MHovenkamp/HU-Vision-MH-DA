@@ -29,9 +29,9 @@ void RGBImageStudent::set(const RGBImageStudent &other) {
 }
 
 void RGBImageStudent::setPixel(int x, int y, RGB pixel) {
-	int row = y * getWidth();
-	if(row+x < pixelStorage.size()){
-		pixelStorage[row + x] = pixel;
+	int index = y * getWidth() + x;
+	if(index < pixelStorage.size()){
+		pixelStorage[index] = pixel;
 	}
 }
 
@@ -42,9 +42,9 @@ void RGBImageStudent::setPixel(int i, RGB pixel) {
 }
 
 RGB RGBImageStudent::getPixel(int x, int y) const {
-	int row = y * getWidth();
-	if(!row+x >= pixelStorage.size()){
-		return pixelStorage[row+x];
+	int index = y * getWidth() + x;
+	if(!index >= pixelStorage.size()){
+		return pixelStorage[index];
 	}
 	return 0;
 }

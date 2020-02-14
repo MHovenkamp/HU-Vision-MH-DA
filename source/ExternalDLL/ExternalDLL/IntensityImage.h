@@ -8,7 +8,7 @@
 #include "Image.h"
 #include "PixelType.h"
 
-class IntensityImage: public Image {
+class IntensityImage : public Image {
 public:
 	IntensityImage();
 	IntensityImage(const int width, const int height);

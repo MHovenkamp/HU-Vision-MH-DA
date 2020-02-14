@@ -1,8 +1,11 @@
 #include "IntensityImageStudent.h"
 
+std::vector<Intensity> IntensityImageStudent::getPixelStorage() {
+	return pixelStorage;
+}
+
 IntensityImageStudent::IntensityImageStudent() : IntensityImage() {
 	int throwError = 0, e = 1 / throwError; //Throws error without the need to include a header
-	//TODO: Nothing
 }
 
 IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other) : IntensityImage(other.getWidth(), other.getHeight()) {
@@ -11,8 +14,7 @@ IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other)
 }
 
 IntensityImageStudent::IntensityImageStudent(const int width, const int height) : IntensityImage(width, height) {
-	int throwError = 0, e = 1 / throwError;
-	//TODO: Initialize pixel storage
+	pixelStorage.reserve(getWidth() * getHeight());
 }
 
 IntensityImageStudent::~IntensityImageStudent() {
@@ -22,8 +24,7 @@ IntensityImageStudent::~IntensityImageStudent() {
 
 void IntensityImageStudent::set(const int width, const int height) {
 	IntensityImage::set(width, height);
-	int throwError = 0, e = 1 / throwError;
-	//TODO: resize or create a new pixel storage (Don't forget to delete the old storage)
+	pixelStorage.resize(getWidth() * getHeight());
 }
 
 void IntensityImageStudent::set(const IntensityImageStudent &other) {
@@ -35,6 +36,9 @@ void IntensityImageStudent::set(const IntensityImageStudent &other) {
 void IntensityImageStudent::setPixel(int x, int y, Intensity pixel) {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: no comment needed :)
+	int row = y * getWidth();
+	pixelStorage[row + x] = pixel;
+
 }
 
 void IntensityImageStudent::setPixel(int i, Intensity pixel) {
@@ -65,7 +69,8 @@ void IntensityImageStudent::setPixel(int i, Intensity pixel) {
 Intensity IntensityImageStudent::getPixel(int x, int y) const {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: no comment needed :)
-	return 0;
+	int row = y * getWidth();
+	return pixelStorage[row + x];
 }
 
 Intensity IntensityImageStudent::getPixel(int i) const {

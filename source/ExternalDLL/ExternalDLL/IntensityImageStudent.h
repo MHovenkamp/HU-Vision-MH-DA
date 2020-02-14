@@ -6,7 +6,11 @@
 
 #pragma once
 #include "IntensityImage.h"
+#include <memory>
+#include <vector>
 class IntensityImageStudent : public IntensityImage {
+private:
+	std::vector<Intensity> pixelStorage;
 public:
 	IntensityImageStudent();
 	IntensityImageStudent(const IntensityImageStudent &other);
@@ -21,4 +25,6 @@ public:
 
 	Intensity getPixel(int x, int y) const;
 	Intensity getPixel(int i) const;
+
+	std::vector<Intensity> getPixelStorage();
 };

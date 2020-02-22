@@ -5,8 +5,8 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 	auto intens = new IntensityImageStudent(image.getWidth(), image.getHeight());
 	for (size_t i = 0; i < intens->pixelStorage.size(); i++) {
 		auto tmp = image.getPixel(i);
-		//pixelStorage[i] = (tmp.r + tmp.g + tmp.b)/3; //Averaging
-		intens->pixelStorage[i] = (tmp.r * 0.2126 + tmp.g * 0.7152 + tmp.b * 0.0722); //Luma
+		intens->pixelStorage[i] = (tmp.r + tmp.g + tmp.b)/3; //Averaging
+		//intens->pixelStorage[i] = (tmp.r * 0.2126 + tmp.g * 0.7152 + tmp.b * 0.0722); //Luma
 	};
 	return intens;
 }

@@ -14,8 +14,8 @@ void drawFeatureDebugImage(IntensityImage &image, FeatureMap &features);
 bool executeSteps(DLLExecution * executor);
 
 int main(int argc, char * argv[]) {
-	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	ImageFactory::setImplementation(ImageFactory::STUDENT);
+	ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	//ImageFactory::setImplementation(ImageFactory::STUDENT);
 
 
 	ImageIO::debugFolder = "C:\\Users\\mhove\\Downloads\\FaceMinMin";
@@ -67,7 +67,7 @@ int main(int argc, char * argv[]) {
 bool executeSteps(DLLExecution * executor) {
 
 	//Execute the four Pre-processing steps
-	if (!executor->executePreProcessingStep1(true)) {
+	if (!executor->executePreProcessingStep1(false)) {
 		std::cout << "Pre-processing step 1 failed!" << std::endl;
 		return false;
 	}

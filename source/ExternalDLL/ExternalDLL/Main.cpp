@@ -17,43 +17,43 @@ int main(int argc, char * argv[]) {
 	ImageFactory::setImplementation(ImageFactory::DEFAULT);
 	//ImageFactory::setImplementation(ImageFactory::STUDENT);
 
+	std::string baseResult = "C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\Set B\\results\\";
+	std::string basePicture = "C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\Set B\\Pictures\\";
 
-	ImageIO::debugFolder = "C:\\Users\\mhove\\Downloads\\FaceMinMin";
-	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
+	std::vector<std::string> pictures{ "Asian_Woman_1", "Bush_1", "Bush_2", "Creepy_man", "Der_Bibliothekar", "friedrich", "George_michael",
+										"Ginger", "Girl_pearl", "Harambe", "Jeanne-Samary", "John_Oliver", "Johny_Depp", "Lena", "Lizzo", "Lucy_Liu",
+										"Man_Vitrivius", "Mona_lisa", "Monkey_1", "Monkey_2", "Schonheit", "Skeleton_Sigaret", "Starry_Night",
+										"Sylvester_Stallone", "Thandie_Newton", "The_Scream", "travestite", "Will_Smith", "Witcher", "Zombie_man" };
 
+	for (auto & item : pictures) {
+		ImageIO::debugFolder = baseResult + item;
+		ImageIO::isInDebugMode = true;
 
-
-
-	RGBImage * input = ImageFactory::newRGBImage();
-	if (!ImageIO::loadImage("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\Set A\\TestSet Images\\child-1.png", *input)) {
-		std::cout << "Image could not be loaded!" << std::endl;
-		system("pause");
-		return 0;
-	}
-	//for (size_t i = 0; i < (input->getHeight() * input->getWidth()); i++)
-	//{
-	//	std::cout << "rgb " << int(input->getPixel(i).r) << "," << int(input->getPixel(i).b) << "," << int(input->getPixel(i).g) << "\n";
-	//}
-
-	ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName("debug.png"));
-
-	
-
-	DLLExecution * executor = new DLLExecution(input);
-
-
-	if (executeSteps(executor)) {
-		std::cout << "Face recognition successful!" << std::endl;
-		std::cout << "Facial parameters: " << std::endl;
-		for (int i = 0; i < 16; i++) {
-			std::cout << (i+1) << ": " << executor->facialParameters[i] << std::endl;
+		RGBImage * input = ImageFactory::newRGBImage();
+		if (!ImageIO::loadImage(basePicture + item, *input)) {
+			std::cout << "Image could not be loaded!" << std::endl;
+			system("pause");
+			return 0;
 		}
-	}
 
-	delete executor;
-	system("pause");
-	return 1;
-}
+		ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName("debug.png"));
+
+		DLLExecution * executor = new DLLExecution(input);
+
+
+		if (executeSteps(executor)) {
+			std::cout << "Face recognition successful!" << std::endl;
+			std::cout << "Facial parameters: " << std::endl;
+			for (int i = 0; i < 16; i++) {
+				std::cout << (i + 1) << ": " << executor->facialParameters[i] << std::endl;
+			}
+		}
+
+		delete executor;
+	}
+		system("pause");
+		return 1;
+	}
 
 
 

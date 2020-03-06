@@ -9,47 +9,78 @@
 #include "HereBeDragons.h"
 #include "ImageFactory.h"
 #include "DLLExecution.h"
+#include <fstream>
+#include <map>
 
 void drawFeatureDebugImage(IntensityImage &image, FeatureMap &features);
 bool executeSteps(DLLExecution * executor);
 
 int main(int argc, char * argv[]) {
+
+	std::string path = "C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\";
+
 	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	//ImageFactory::setImplementation(ImageFactory::STUDENT);
+	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
-	std::string baseResult = "C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\Set B\\results\\";
-	std::string basePicture = "C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\Set B\\Pictures\\";
+	std::vector<std::string> picturesB;
+	std::vector<std::string> picturesC;
+	std::vector<std::string> picturesD;
+	std::vector<std::string> picturesE;
 
-	std::vector<std::string> pictures{ "Asian_Woman_1", "Bush_1", "Bush_2", "Creepy_man", "Der_Bibliothekar", "friedrich", "George_michael",
-										"Ginger", "Girl_pearl", "Harambe", "Jeanne-Samary", "John_Oliver", "Johny_Depp", "Lena", "Lizzo", "Lucy_Liu",
-										"Man_Vitrivius", "Mona_lisa", "Monkey_1", "Monkey_2", "Schonheit", "Skeleton_Sigaret", "Starry_Night",
-										"Sylvester_Stallone", "Thandie_Newton", "The_Scream", "travestite", "Will_Smith", "Witcher", "Zombie_man" };
+	std::map<std::string, std::vector<std::string>> pictures;
 
-	for (auto & item : pictures) {
-		ImageIO::debugFolder = baseResult + item;
-		ImageIO::isInDebugMode = true;
+	std::ifstream infileB("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setB.txt");
+	std::ifstream infileC("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setC.txt");
+	std::ifstream infileD("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setD.txt");
+	std::ifstream infileE("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setE.txt");
 
-		RGBImage * input = ImageFactory::newRGBImage();
-		if (!ImageIO::loadImage(basePicture + item, *input)) {
-			std::cout << "Image could not be loaded!" << std::endl;
-			system("pause");
-			return 0;
-		}
+	std::string temp;
+	while (infileB >> temp) {
+		picturesB.push_back(temp);
+	}
+	while (infileC >> temp) {
+		picturesC.push_back(temp);
+	}
+	while (infileD >> temp) {
+		picturesD.push_back(temp);
+	}
+	while (infileE >> temp) {
+		picturesE.push_back(temp);
+	}
 
-		ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName("debug.png"));
+	pictures["Set B-people"] = picturesB;
+	pictures["Set C-nature"] = picturesC;
+	pictures["Set D-Art"] = picturesD;
+	pictures["Set E-animals"] = picturesE;
 
-		DLLExecution * executor = new DLLExecution(input);
+	for (auto & key : pictures) {
+		std::cout << key.first << std::endl;
+		for (auto & item: key.second) {
+			ImageIO::debugFolder = path + "Results\\" + key.first + "\\" +  item;
+			ImageIO::isInDebugMode = true;
 
-
-		if (executeSteps(executor)) {
-			std::cout << "Face recognition successful!" << std::endl;
-			std::cout << "Facial parameters: " << std::endl;
-			for (int i = 0; i < 16; i++) {
-				std::cout << (i + 1) << ": " << executor->facialParameters[i] << std::endl;
+			RGBImage * input = ImageFactory::newRGBImage();
+			if (!ImageIO::loadImage(path + key.first + "\\"+ item, *input)) {
+				std::cout << "Image could not be loaded!" << std::endl;
+				system("pause");
+				return 0;
 			}
-		}
 
-		delete executor;
+			ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName("debug.png"));
+
+			DLLExecution * executor = new DLLExecution(input);
+
+
+			if (executeSteps(executor)) {
+				std::cout << "Face recognition successful!" << std::endl;
+				std::cout << "Facial parameters: " << std::endl;
+				for (int i = 0; i < 16; i++) {
+					std::cout << (i + 1) << ": " << executor->facialParameters[i] << std::endl;
+				}
+			}
+
+			delete executor;
+		}
 	}
 		system("pause");
 		return 1;

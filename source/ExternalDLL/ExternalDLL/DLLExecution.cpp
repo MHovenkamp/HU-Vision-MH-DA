@@ -104,12 +104,14 @@ bool DLLExecution::executeExtractionStep1(bool student) {
 	if (!features.hasFeatures(requiredFeatures, 2)) {
 		return false;
 	}
+
 	bool succes = false;
 	if (student) {
 		succes = studentExtraction.stepExtractEyes(*resultPreProcessingStep4, features);
 	} else {
 		succes = defaultExtraction.stepExtractEyes(*resultPreProcessingStep4, features);
 	}
+
 
 	if (features.hasFeature(Feature::FEATURE_EYE_LEFT_RECT)) {
 		Feature eyeLeft = features.getFeature(Feature::FEATURE_EYE_LEFT_RECT);

@@ -20,8 +20,9 @@ int main(int argc, char * argv[]) {
 	std::string path = "C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\";
 
 	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	ImageFactory::setImplementation(ImageFactory::STUDENT);
+	//ImageFactory::setImplementation(ImageFactory::STUDENT);
 
+	std::vector<std::string> picturesA;
 	std::vector<std::string> picturesB;
 	std::vector<std::string> picturesC;
 	std::vector<std::string> picturesD;
@@ -29,12 +30,16 @@ int main(int argc, char * argv[]) {
 
 	std::map<std::string, std::vector<std::string>> pictures;
 
+	std::ifstream infileA("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setA.txt");
 	std::ifstream infileB("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setB.txt");
 	std::ifstream infileC("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setC.txt");
 	std::ifstream infileD("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setD.txt");
 	std::ifstream infileE("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setE.txt");
 
 	std::string temp;
+	while (infileA >> temp) {
+		picturesA.push_back(temp);
+	}
 	while (infileB >> temp) {
 		picturesB.push_back(temp);
 	}
@@ -48,15 +53,19 @@ int main(int argc, char * argv[]) {
 		picturesE.push_back(temp);
 	}
 
-	pictures["Set B-people"] = picturesB;
-	pictures["Set C-nature"] = picturesC;
-	pictures["Set D-Art"] = picturesD;
+	//pictures["Set A"] = picturesA;
+	//pictures["Set B-people"] = picturesB;
+	//pictures["Set C-nature"] = picturesC;
+	//pictures["Set D-Art"] = picturesD;
 	pictures["Set E-animals"] = picturesE;
 
 	for (auto & key : pictures) {
 		std::cout << key.first << std::endl;
 		for (auto & item: key.second) {
-			ImageIO::debugFolder = path + "Results\\" + key.first + "\\" +  item;
+			std::string name = item.substr(0,item.size()-4);
+			std::string tmp = path + "Results\\" + key.first + "\\" + name;
+			ImageIO::debugFolder = tmp;
+			std::cout << key.first << " | " << item << std::endl;
 			ImageIO::isInDebugMode = true;
 
 			RGBImage * input = ImageFactory::newRGBImage();
@@ -66,7 +75,7 @@ int main(int argc, char * argv[]) {
 				return 0;
 			}
 
-			ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName("debug.png"));
+			ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName(item));
 
 			DLLExecution * executor = new DLLExecution(input);
 
@@ -80,6 +89,7 @@ int main(int argc, char * argv[]) {
 			}
 
 			delete executor;
+			std::cout << "finished one \n";
 		}
 	}
 		system("pause");

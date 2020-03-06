@@ -1,5 +1,6 @@
 aardappeleters.jpg
 battle.png
+blobs.jpg
 boat.jpg
 budha.jpg
 children.jpg
@@ -7,7 +8,6 @@ Der-Bibliothekar.jpg
 face.jpg
 face2.jpg
 face3.png
-footman.webp
 frida-kahlo.jpg
 friedrich.jpg
 Girl_Pearl.jpg

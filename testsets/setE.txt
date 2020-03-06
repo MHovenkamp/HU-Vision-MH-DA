@@ -17,7 +17,7 @@ giraff.jpg
 monkey-3.jpg
 Monkey_1.jpg
 Monkey_2.jpg
-naked thing.jpg
+naked-thing.jpg
 nemo.jpeg
 nose-fish.jpg
 octopus.jpeg

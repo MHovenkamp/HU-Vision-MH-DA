@@ -22,21 +22,28 @@ int main(int argc, char * argv[]) {
 	ImageFactory::setImplementation(ImageFactory::DEFAULT);
 	//ImageFactory::setImplementation(ImageFactory::STUDENT);
 
+	std::vector<std::string> picturesOrg;
 	std::vector<std::string> picturesA;
 	std::vector<std::string> picturesB;
 	std::vector<std::string> picturesC;
 	std::vector<std::string> picturesD;
 	std::vector<std::string> picturesE;
+	std::vector<std::string> picturesF;
 
 	std::map<std::string, std::vector<std::string>> pictures;
 
-	std::ifstream infileA("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setA.txt");
-	std::ifstream infileB("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setB.txt");
-	std::ifstream infileC("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setC.txt");
-	std::ifstream infileD("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setD.txt");
-	std::ifstream infileE("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\setE.txt");
+	std::ifstream infileOrg("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\SetA.txt");
+	std::ifstream infileA("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\RandomA.txt");
+	std::ifstream infileB("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\RandomB.txt");
+	std::ifstream infileC("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\RandomC.txt");
+	std::ifstream infileD("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\RandomD.txt");
+	std::ifstream infileE("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\RandomE.txt");
+	std::ifstream infileF("C:\\Users\\mhove\\Documents\\GitHub\\HU-Vision-MH-DA\\testsets\\RandomF.txt");
 
 	std::string temp;
+	while (infileOrg >> temp) {
+		picturesOrg.push_back(temp);
+	}
 	while (infileA >> temp) {
 		picturesA.push_back(temp);
 	}
@@ -52,12 +59,17 @@ int main(int argc, char * argv[]) {
 	while (infileE >> temp) {
 		picturesE.push_back(temp);
 	}
+	while (infileF >> temp) {
+		picturesF.push_back(temp);
+	}
 
-	//pictures["Set A"] = picturesA;
-	//pictures["Set B-people"] = picturesB;
-	//pictures["Set C-nature"] = picturesC;
-	//pictures["Set D-Art"] = picturesD;
-	pictures["Set E-animals"] = picturesE;
+	pictures["Set A"] = picturesOrg;
+	pictures["Random A"] = picturesA;
+	pictures["Random B"] = picturesB;
+	pictures["Random C"] = picturesC;
+	pictures["Random D"] = picturesD;
+	pictures["Random E"] = picturesE;
+	pictures["Random F"] = picturesF;
 
 	for (auto & key : pictures) {
 		std::cout << key.first << std::endl;
@@ -108,13 +120,11 @@ int main(int argc, char * argv[]) {
 bool executeSteps(DLLExecution * executor) {
 
 	//Execute the four Pre-processing steps
-	if (!executor->executePreProcessingStep1(false)) {
+	if (!executor->executePreProcessingStep1(true)) {
 		std::cout << "Pre-processing step 1 failed!" << std::endl;
 		return false;
 	}
 
-
-	std::cout << "YOUR MY DAD BOOGIEWOOGIE \n";
 	if (!executor->executePreProcessingStep2(false)) {
 		std::cout << "Pre-processing step 2 failed!" << std::endl;
 		return false;

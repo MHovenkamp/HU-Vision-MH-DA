@@ -63,12 +63,12 @@ int main(int argc, char * argv[]) {
 		picturesF.push_back(temp);
 	}
 
-	pictures["Set A"] = picturesOrg;
-	pictures["Random A"] = picturesA;
-	pictures["Random B"] = picturesB;
-	pictures["Random C"] = picturesC;
-	pictures["Random D"] = picturesD;
-	pictures["Random E"] = picturesE;
+	//pictures["Set A"] = picturesOrg;
+	//pictures["Random A"] = picturesA;
+	//pictures["Random B"] = picturesB;
+	//pictures["Random C"] = picturesC;
+	//pictures["Random D"] = picturesD;
+	//pictures["Random E"] = picturesE;
 	pictures["Random F"] = picturesF;
 
 	for (auto & key : pictures) {

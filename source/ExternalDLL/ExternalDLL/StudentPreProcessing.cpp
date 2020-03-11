@@ -4,7 +4,6 @@
 #include <cmath>
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-	std::cout << "In Studentpreprosing\n";
 	auto intens = new IntensityImageStudent(image.getWidth(), image.getHeight());
 	for (size_t i = 0; i < intens->pixelStorage.size(); i++) {
 		auto tmp = image.getPixel(i);

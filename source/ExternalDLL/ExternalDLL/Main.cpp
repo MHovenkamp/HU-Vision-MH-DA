@@ -63,12 +63,12 @@ int main(int argc, char * argv[]) {
 		picturesF.push_back(temp);
 	}
 
-	//pictures["Set A"] = picturesOrg;
-	//pictures["Random A"] = picturesA;
-	//pictures["Random B"] = picturesB;
-	//pictures["Random C"] = picturesC;
-	//pictures["Random D"] = picturesD;
-	//pictures["Random E"] = picturesE;
+	pictures["Set A"] = picturesOrg;
+	pictures["Random A"] = picturesA;
+	pictures["Random B"] = picturesB;
+	pictures["Random C"] = picturesC;
+	pictures["Random D"] = picturesD;
+	pictures["Random E"] = picturesE;
 	pictures["Random F"] = picturesF;
 
 	for (auto & key : pictures) {
@@ -77,7 +77,6 @@ int main(int argc, char * argv[]) {
 			std::string name = item.substr(0,item.size()-4);
 			std::string tmp = path + "Results\\" + key.first + "\\" + name;
 			ImageIO::debugFolder = tmp;
-			std::cout << key.first << " | " << item << std::endl;
 			ImageIO::isInDebugMode = true;
 
 			RGBImage * input = ImageFactory::newRGBImage();
@@ -101,7 +100,6 @@ int main(int argc, char * argv[]) {
 			}
 
 			delete executor;
-			std::cout << "finished one \n";
 		}
 	}
 		system("pause");
